@@ -8,21 +8,26 @@
 #include <ArduinoJson.h>
 //*****BE SURE TO INSTALL VERSION 5.13.3 OF THE LIBRARY IT INSTALL V6BETA BY DEFAULT 
 
+int paints = 3;
+int paintPins[3] = {4,5,6}; // Paint Pins
+const int buttonSwap = 7;     // Switches target for dispense button
+const int buttonDispense = 8; // 
 
-const int paintPin1 = 4;                         //paintPints are digital pins
-const int paintPin2 = 5;
+int p5Input[3]; // P5 Input streams //these variables hold the input values
+
+// Control variables
 const int paintDelay = 500; // ms, how long to maintain a high signal after receiving one 
-
-int p5Input1;                                   //these variables hold the input values
-int p5Input2;
 
 int lastRead;
 
 void setup() 
 {
   Serial.begin(9600);                                     //turn on the serial port
-  pinMode(paintPin1,OUTPUT);                       // paintPins are digital outputs. 
-  pinMode(paintPin2,OUTPUT);
+  pinMode(paintPins[0],OUTPUT);                       // paintPins are digital outputs. 
+  pinMode(paintPins[1],OUTPUT);
+  pinMode(paintPins[2],OUTPUT);
+  pinMode(buttonSwap,INPUT_PULLUP);       
+  pinMode(buttonDispense,INPUT_PULLUP);
 }
 
 void loop() 
@@ -32,26 +37,19 @@ void loop()
   DynamicJsonBuffer messageBuffer(200);                   //create the Buffer for the JSON object        
   JsonObject& p5Read = messageBuffer.parse(Serial);      //create a JsonObject variable and attach it to incoming Serial messages     
  
-  p5Input1 = p5Read["somethingsomething"];              //blue user on the network clicked
-  p5Input2 = p5Read["led2"];                            //red user on the network clicked
+  p5Input[0] = p5Read["somethingsomething"];              //blue user on the network clicked
+  p5Input[1] = p5Read["led2"];                            //red user on the network clicked
 
-  // Paint Bucket 1
-  if (p5Input1 == "makePaintGo") {                        //close the valve after half a second
-    analogWrite(paintPin1, HIGH);//copypaste this function and change the numbering to add new paint buckets
-  } else {
-    if (millis() - lastRead >= 500) {
-        analogWrite(paintPin1, LOW); 
-    }
+  for (int i=0;i<paints;i++) { // Loop through all paint dispensers
+
+    if (p5Input[i] == 1) {                 
+      digitalWrite(paintPins[i], HIGH);
+    } else if (p5Input[i] == 0) {
+      if (millis() - lastRead >= 500) {
+          digitalWrite(paintPins[i], LOW); 
+      }
+    } 
   }
-  
-  // Paint Bucket 2
-  if (p5Input2=="makePaintGo") {                        //close the valve after half a second
-      analogWrite(paintPin2, HIGH);
-  } else {
-    if (millis() - lastRead >= 500) {
-      analogWrite(paintPin2, LOW); 
-    }
-  }    
   
  lastRead = millis();
 }
