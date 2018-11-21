@@ -1,53 +1,3 @@
-/* ~~~ ~~~ ~~~ ~~~ p5 ~~~ ~~~ ~~~ ~~~ */
-/* Uncomment below for p5 version of interface */
-
-// var unpressedImage;
-// var clickedImage;
-// var isOverRectangle;
-// var buttonClicked;
-// var counter = 0;
-//
-// function preload() {
-//   unpressedImage = loadImage('Paint-unpressed.jpg')
-//   clickedImage = loadImage('Paint-clicked.jpg')
-// }
-//
-// function setup() {
-//   createCanvas(window.innerWidth, window.innerHeight);
-//   image(unpressedImage, window.innerWidth / 2 - 90, window.innerHeight - 136, 180, 68);
-// }
-//
-// function draw () {
-//
-//
-//   if (mouseX >= window.innerWidth/2 -90 && mouseX <= window.innerWidth/2 +90 && mouseY >= window.innerHeight - 136 && mouseY <= window.innerHeight - 68)
-//   {
-//     isOverRectangle = true;
-//   } else {
-//     isOverRectangle = false;
-//   }
-//
-//   console.log(isOverRectangle);
-//   console.log(counter)
-//
-// }
-//
-//
-// function mousePressed()
-// {
-//   if(isOverRectangle == true)
-//   {
-//     counter ++;
-//     image(clickedImage, window.innerWidth / 2 - 90, window.innerHeight - 136, 180, 68);
-//   }
-// }
-
-/* Uncomment above for p5 version of interface */
-/* ~~~ ~~~ ~~~ ~~~ p5 ~~~ ~~~ ~~~ ~~~ */
-
-
-
-
 /* ~~~ ~~~ ~~~ ~~ JavaScript ~~~ ~~~ ~~~ ~~~ */
 /* Uncomment below for JS,CSS + HTML version of interface */
 
@@ -98,3 +48,53 @@ paintTag.addEventListener("click", function() {
 
 /* Uncomment above for JS, CSS + HTML version of interface */
 /* ~~~ ~~~ ~~~ ~~~ JavaScript ~~~ ~~~ ~~~ ~~~ */
+
+
+
+
+/* ~~~ ~~~ ~~~ ~~~ p5 ~~~ ~~~ ~~~ ~~~ */
+/* Uncomment below for p5 version of interface */
+
+// var unpressedImage;
+// var clickedImage;
+// var isOverRectangle;
+// var buttonClicked;
+// var counter = 0;
+//
+// function preload() {
+//   unpressedImage = loadImage('Paint-unpressed.jpg')
+//   clickedImage = loadImage('Paint-clicked.jpg')
+// }
+//
+// function setup() {
+//   createCanvas(window.innerWidth, window.innerHeight);
+//   image(unpressedImage, window.innerWidth / 2 - 90, window.innerHeight - 136, 180, 68);
+// }
+//
+// function draw () {
+//
+//
+//   if (mouseX >= window.innerWidth/2 -90 && mouseX <= window.innerWidth/2 +90 && mouseY >= window.innerHeight - 136 && mouseY <= window.innerHeight - 68)
+//   {
+//     isOverRectangle = true;
+//   } else {
+//     isOverRectangle = false;
+//   }
+//
+//   console.log(isOverRectangle);
+//   console.log(counter)
+//
+// }
+//
+//
+// function mousePressed()
+// {
+//   if(isOverRectangle == true)
+//   {
+//     counter ++;
+//     image(clickedImage, window.innerWidth / 2 - 90, window.innerHeight - 136, 180, 68);
+//   }
+// }
+
+/* Uncomment above for p5 version of interface */
+/* ~~~ ~~~ ~~~ ~~~ p5 ~~~ ~~~ ~~~ ~~~ */
