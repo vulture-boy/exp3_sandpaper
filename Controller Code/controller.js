@@ -15,10 +15,9 @@ var channelName = 'splash';
 // Serial Vars
 var serial;       //variable to hold the serial port object
 var ardSend = {}; //uses {} to define it as a JSON variable
-var sendVal1;     //variables to hold the values to send to arduino 
-var sendVal2;
+var solenoids = 3; // no. of solenoids
+var sendVal[solenoids]; // Values to send to arduino (size = solenoids)
 var serialPortName = "COM7";      //FOR PC it will be COMX on mac it will be something like "/dev/cu.usbmodemXXXX"
-var sendRate = 100;               //use this with setInterval to stablize the data sending to arduino
  
 function preload() { // Preload graphical assets
 	// STUB
@@ -38,8 +37,12 @@ function setup() {
 	serial.open(serialPortName);      //open the serialport. determined 
 	serial.on('open',ardCon);         //open the socket connection and execute the ardCon callback
 	//setting the send rate
-	setInterval(sendData,50);         //built in javascript function that executes a funtion every XXXX milliseconds
+	// setInterval(sendData,50);         //built in javascript function that executes a funtion every XXXX milliseconds
 										//in this case we use it to execute the sendData function we do this to stabilize the send function 
+	
+	for (i=0;i<solenoids;i++) {
+		sendVal[i] = 0;
+	}
 	
 	// PubNub
 	dataServer = new PubNub( {
@@ -55,30 +58,43 @@ function setup() {
 }
 
 function draw() {
+	
+	// Assign values for solenoids in place of an interval.
+	sendData();
 
-	// STUB: set values to send here (e.g. sendVal1, sendVal2)
 }
 
 function readIncoming(inMessage) { //when new data comes in it triggers this function, 
   // this works becsuse we subscribed to the channel in setup()
   
-	// STUB: Refer to inMessage.message.____ for values based on client
-	// 		and apply information here.
-	//		... also forward info down to sendData at some point.
+	  // simple error check to match the incoming to the channelName
+  if(inMessage.channel == channelName) {
+	sendVal[inMessage.paintCol-1] = 1;
+	sendData();
+  }
 }
 
 function sendData()
 {
   
-  ardSend.led1 = sendVal1;                      //add the value to the led1 parameter on the json object
-  ardSend.led2 = sendVal2;                      //add the value to the led2 parameter on the json object
+  // JSON object parameter assignment
+	ardSend.solenoid1 = sendVal[0];    
+	ardSend.solenoid2 = sendVal[1];  
+	ardSend.solenoid3 = sendVal[2];     
+  
+	var sendString = JSON.stringify(ardSend);     //convert the json to a string  
+	console.log(sendString)
 
-  var sendString = JSON.stringify(ardSend);     //convert the json to a string  
-  console.log(sendString)
+	serial.write(sendString);                     //send it over the serial port    
+	serial.write('\n');                           //write a new line character
 
-  serial.write(sendString);                     //send it over the serial port    
-  serial.write('\n');                           //write a new line character
+	clearSendVal();
+}
 
+function clearSendVal() {
+	for (i=0;i<solenoids;i++) {
+		sendVal[i] = 0;
+	}
 }
 
 function whoisconnected(connectionInfo) {

@@ -15,7 +15,6 @@ var channelName = 'splash';
 var sendText;
 var whoAreYou;
 var sendButton;
-var filterText;
  
 function preload() { // Preload graphical assets
 	// STUB
@@ -40,24 +39,21 @@ function setup() {
 	dataServer.addListener({ message: readIncoming, presence: whoisconnected })
 	dataServer.subscribe({channels: [channelName]});
 	
-	// ARTIFACTS FROM EXAMPLE CODE:
-	//create the text fields for the message to be sent
-	whoAreYou = createInput('Write Your Name');
-	whoAreYou.position(5,height);
+	// STUB: Replace these with GUI elements 
+	paintType = createRadio();
+	paintType.option('Red', 1);
+	paintType.option('Yellow', 2);
+	paintType.option('Blue', 3);
+	paintType.value(1);
+	paintType.position(40,height);
 
-	sendText = createInput('Write A Message');
-	sendText.position(5,height+30);
-
-	sendButton = createButton('Post Message');
+	sendButton = createButton('Send Command');
 	sendButton.position(sendText.x + sendText.width,height+30);
 	sendButton.mousePressed(sendTheMessage);
-
-	filterText = createInput('Who are you listening to?');
-	filterText.position(5,height+60);
 }
 
 function draw() {
-	// STUB: Draw UI Here
+	// STUB: Draw UI & particles Here
 }
 
 ///uses built in mouseClicked function to send the data to the pubnub server
@@ -68,11 +64,8 @@ function sendTheMessage() {
   dataServer.publish(
     {
       channel: channelName,
-      message: 
-      {
-        who: whoAreYou.value(),
-        messageText: sendText.value()       //get the value from the text box and send it as part of the message   
-      }
+      paintCol: paintType.value();,
+	  
     });
 
 }
@@ -83,14 +76,11 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
   // simple error check to match the incoming to the channelName
   if(inMessage.channel == channelName)
   {
-    if(inMessage.message.who==filterText.value())
-    {
-    background(255);
-    noStroke();
-    fill(0);  //read the color values from the message
-    textSize(30)
-    text((inMessage.message.who+" says "+inMessage.message.messageText), 5, height/2);
-    }
+	// STUB: Create instance of "+1" colour particle object here
+	// - need a list of particle objects 
+	// - need a particle constructor function 
+	// https://p5js.org/examples/simulate-particle-system.html
+	// particle.color = inMessage.paintCol; 
   }
 }
 
