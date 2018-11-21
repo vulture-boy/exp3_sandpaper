@@ -1,0 +1,181 @@
+body, h1 {
+  font-family: neuzeit-grotesk, sans-serif;
+  color: #FF7055;
+  font-size: 72px;
+  font-weight: 400;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+}
+
+.totalUsers h1 {
+  position: absolute;
+  bottom: 3%;
+  right: 0;
+  margin-right: 48px;
+}
+
+.totalClicks h1 {
+  position: absolute;
+  top: 3%;
+  right: 0;
+  margin-right: 48px;
+}
+
+.totalPlates h1 {
+  position: absolute;
+  bottom: 3%;
+  left: 0;
+  margin-left: 48px;
+}
+
+.live h1 {
+  position: absolute;
+  top: 3%;
+  left: 0;
+  margin-left: 48px;
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 32px;
+}
+
+.header section {
+  padding-top: 32px;
+}
+
+nav a {
+  display: inline-block;
+  margin-left: 16px;
+}
+
+/* ~~~ ~~~ ~~~ ~~~ JavaScript, CSS, and HTML ~~~ ~~~ ~~~ ~~~ */
+/* ~~~ ~~~ ~~~ ~~~ comment out, if using p5 ~~~ ~~~ ~~~ ~~~ */
+
+div.button {
+  position: absolute;
+  text-align: center;
+  bottom: 8%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.button img {
+  height: 68px;
+}
+
+div.bucket {
+  position: absolute;
+  text-align: center;
+  bottom: 20%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.bucket img {
+  height: 72px;
+  transition: all 0.2s;
+}
+
+div.bucket img:hover {
+  transform: scale(1.1);
+}
+
+/* ~~~ ~~~ ~~~ ~~~ comment out, if using p5 ~~~ ~~~ ~~~ ~~~ */
+
+#left  {
+  width: 14px;
+  left: 0px;
+  background: rgb(255, 255, 0);
+  top: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+#right {
+  width: 14px;
+  right: 0px;
+  background: rgb(255, 255, 0);
+  top: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+#top {
+  position: absolute;
+  height: 14px;
+  top: 0;
+  background: rgb(255, 255, 0);
+  left: 0;
+  right: 0;
+}
+
+#bottom {
+  position: absolute;
+  height: 14px;
+  background: rgb(255, 255, 0);
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#left, #right, #bottom, #top {
+  transition: all 0.5s
+}
+
+@media only screen and (max-width: 900px) {
+
+  .live h1, .totalPlates h1, .totalClicks h1, .totalUsers h1 {
+    font-size: 48px;
+  }
+
+  div.bucket {
+    bottom: 13%;
+  }
+
+  div.button {
+    bottom: 4%;
+  }
+
+}
+
+@media only screen and (max-width: 640px) {
+
+  .live h1, .totalPlates h1, .totalClicks h1, .totalUsers h1 {
+    font-size: 28px;
+  }
+
+  div.bucket {
+    bottom: 13%;
+  }
+
+  div.button {
+    bottom: 4%;
+  }
+
+}
+
+@media only screen and (max-width: 500px) {
+
+  div.bucket {
+    bottom: 25%;
+  }
+
+  div.button {
+    bottom: 13%;
+  }
+}
+
+}
