@@ -11,8 +11,11 @@ var whoAreYou;
 var sendButton;
 
 let paintNumber = 0;
-let counter = 0;
-let totalCounter = 0;
+let counter = 0; // Your total clicks
+let totalCounter = [0,0,0]; // Total clicks recorded for paint colours
+// e.g. totalCounter[0] = red drops
+//			totalCounter[1] = yella darapssss
+// 			totalCounter[2] = blue drops 
 
 
 const h1Tag1 = document.querySelector("h1")
@@ -112,7 +115,7 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
   // simple error check to match the incoming to the channelName
   if(inMessage.channel == channelName)
   {
-	  totalCounter++;
+	  totalCounter[inMessage.message.paintCol]++;
 	// STUB: Create instance of "+1" colour particle object here
 	// - need a list of particle objects
 	// - need a particle constructor function
