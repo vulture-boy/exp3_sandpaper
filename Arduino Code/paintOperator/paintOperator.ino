@@ -9,7 +9,7 @@
 
 // Paints
 int paints = 3; // Number of paints in use
-int paintPins[3] = {4,5,6}; // Paint Pins (Red, Yellow, Blue ?)
+int paintPins[3] = {4,6,5}; // Paint Pins (Red, Yellow, Blue ?)
 unsigned long paintTime[3]; // Time track for each paint
 const int paintDelay = 500; // ms, how long to maintain a high signal after receiving one 
 
@@ -33,14 +33,15 @@ void setup()
   // Buttons
   pinMode(buttonSwap,INPUT_PULLUP);       
   pinMode(buttonDispense,INPUT_PULLUP);
+  
 }
 
 void loop() 
 
 {
   // Serial Input
-  DynamicJsonBuffer messageBuffer(200);                   //create the Buffer for the JSON object        
-  JsonObject& p5Read = messageBuffer.parse(Serial);      //create a JsonObject variable and attach it to incoming Serial messages     
+  DynamicJsonBuffer messageBuffer(200);                   //create the Buffer for the JSON object  
+  JsonObject& p5Read = messageBuffer.parse(Serial);      //create a JsonObject variable and attach it to incoming Serial messages 
 
   // JSON objects 
   p5Input[0] = p5Read["solenoid1"];  // Red
@@ -66,10 +67,12 @@ void loop()
   for (int i=0;i<paints;i++) { // Loop through all paint dispensers
 
     // Check Dispense Button State
+    /*
     if (buttonTarget == i && digitalRead(buttonDispense)) {
       buttonStateD = 1;
     } else {buttonStateD = 0;}
-
+    */
+    
     if (p5Input[i] == 1 || buttonStateD == 1) {                 
       digitalWrite(paintPins[i], HIGH);
       paintTime[i] = millis() + paintDelay;
