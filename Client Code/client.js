@@ -12,6 +12,7 @@ var sendButton;
 
 let paintNumber = 0;
 let counter = 0;
+let totalCounter = 0;
 
 
 const h1Tag1 = document.querySelector("h1")
@@ -111,6 +112,7 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
   // simple error check to match the incoming to the channelName
   if(inMessage.channel == channelName)
   {
+	  totalCounter++;
 	// STUB: Create instance of "+1" colour particle object here
 	// - need a list of particle objects
 	// - need a particle constructor function
