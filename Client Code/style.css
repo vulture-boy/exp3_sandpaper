@@ -1,4 +1,9 @@
+canvas {
+  z-index: 0
+}
+
 body, h1 {
+  z-index: 1000;
   font-family: neuzeit-grotesk, sans-serif;
   color: #FFFFFF;
   font-size: 72px;
