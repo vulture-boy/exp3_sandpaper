@@ -16,7 +16,7 @@ var channelName = 'splash';
 var serial;       //variable to hold the serial port object
 var ardSend = {}; //uses {} to define it as a JSON variable
 var solenoids = 3; // no. of solenoids
-var sendVal[solenoids]; // Values to send to arduino (size = solenoids)
+var sendVal = [0,0,0]; // Values to send to arduino (size = solenoids)
 var serialPortName = "COM7";      //FOR PC it will be COMX on mac it will be something like "/dev/cu.usbmodemXXXX"
  
 function preload() { // Preload graphical assets
@@ -40,9 +40,6 @@ function setup() {
 	// setInterval(sendData,50);         //built in javascript function that executes a funtion every XXXX milliseconds
 										//in this case we use it to execute the sendData function we do this to stabilize the send function 
 	
-	for (i=0;i<solenoids;i++) {
-		sendVal[i] = 0;
-	}
 	
 	// PubNub
 	dataServer = new PubNub( {
@@ -69,7 +66,7 @@ function readIncoming(inMessage) { //when new data comes in it triggers this fun
   
 	  // simple error check to match the incoming to the channelName
   if(inMessage.channel == channelName) {
-	sendVal[inMessage.paintCol-1] = 1;
+	sendVal[inMessage.message.paintCol] = 1;
 	sendData();
   }
 }
