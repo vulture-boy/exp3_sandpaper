@@ -13,7 +13,7 @@
   <div id="right"></div>
   <div id="top"></div>
   <div id="bottom"></div>
-  
+
 	<!-- Add a placeholder for the Twitch embed -->
 	<div id="twitch-embed"></div>
 
@@ -21,10 +21,12 @@
 	<script src="https://embed.twitch.tv/embed/v1.js"></script>
 
 	<!-- Create a Twitch.Embed object that will render within the "twitch-embed" root element. -->
-	<script type="text/javascript">
+
+
+<script type="text/javascript">
 	  new Twitch.Embed("twitch-embed", {
 		width: '100%',
-		height: 600,
+		height: '800',
 		layout: 'video',
 		channel: "friendly_vultures",
 		allowfullscreen: false,
@@ -32,9 +34,6 @@
 	  });
 	</script>
 
-
-  <!-- ~~~ ~~~ ~~~ ~~~ JavaScript, CSS, and HTML ~~~ ~~~ ~~~ ~~~
-       ~~~ ~~~ ~~~ ~~~ comment out, if using p5 ~~~ ~~~ ~~~ ~~~ -->
   <div class="button">
     <a href="#" class="paintChange">
     <img src="assets/Paint-unpressed.jpg">
@@ -51,20 +50,18 @@
     <h1><span>0 </span>Drops</h1>
   </div>
 
-  <div class="totalUsers">
+  <!-- <div class="totalUsers">
     <h1><span>1 </span>Artists</h1>
-  </div>
+  </div> -->
 
   <div class="totalPlates">
-    <h1>Project <span>1 </span></h1>
+    <h1>Project <span>4 </span></h1>
   </div>
 
   <div class="live">
     <h1>Live<h1>
     </div>
 
-  <!-- ~~~ ~~~ ~~~ ~~~ JavaScript, CSS, and HTML ~~~ ~~~ ~~~ ~~~
-       ~~~ ~~~ ~~~ ~~~ comment out, if using p5 ~~~ ~~~ ~~~ ~~~ -->
 </body>
 
 <script src="libraries/jquery.js"></script>

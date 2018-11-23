@@ -5,18 +5,27 @@ body, h1 {
   font-weight: 400;
 }
 
+html, body {
+  margin: 0; height: 100%; overflow: hidden
+}
+
+.overflow {
+  overflow: hidden;
+  width: 100%;
+}
+
 .header {
   position: fixed;
   width: 100%;
   text-align: center;
 }
 
-.totalUsers h1 {
-  position: absolute;
-  bottom: 3%;
-  right: 0;
-  margin-right: 48px;
-}
+/* .totalUsers h1 {
+position: absolute;
+top: 3%;
+left: 0;
+margin-left: 48px;
+} */
 
 .totalClicks h1 {
   position: absolute;
@@ -34,9 +43,9 @@ body, h1 {
 
 .live h1 {
   position: absolute;
-  top: 3%;
-  left: 0;
-  margin-left: 48px;
+  bottom: 3%;
+  right: 0;
+  margin-right: 48px;
 }
 
 nav {
@@ -46,17 +55,10 @@ nav {
   padding-top: 32px;
 }
 
-.header section {
-  padding-top: 32px;
-}
-
 nav a {
   display: inline-block;
   margin-left: 16px;
 }
-
-/* ~~~ ~~~ ~~~ ~~~ JavaScript, CSS, and HTML ~~~ ~~~ ~~~ ~~~ */
-/* ~~~ ~~~ ~~~ ~~~ comment out, if using p5 ~~~ ~~~ ~~~ ~~~ */
 
 div.button {
   position: absolute;
@@ -93,12 +95,10 @@ div.bucket img:hover {
   transform: scale(1.1);
 }
 
-/* ~~~ ~~~ ~~~ ~~~ comment out, if using p5 ~~~ ~~~ ~~~ ~~~ */
-
 #left  {
   width: 14px;
   left: 0px;
-  background: rgb(255, 255, 0);
+  background: rgb(255, 0, 0);
   top: 0;
   bottom: 0;
   position: fixed;
@@ -107,7 +107,7 @@ div.bucket img:hover {
 #right {
   width: 14px;
   right: 0px;
-  background: rgb(255, 255, 0);
+  background: rgb(255, 0, 0);
   top: 0;
   bottom: 0;
   position: fixed;
@@ -117,7 +117,7 @@ div.bucket img:hover {
   position: absolute;
   height: 14px;
   top: 0;
-  background: rgb(255, 255, 0);
+  background: rgb(255, 0, 0);
   left: 0;
   right: 0;
 }
@@ -125,7 +125,7 @@ div.bucket img:hover {
 #bottom {
   position: absolute;
   height: 14px;
-  background: rgb(255, 255, 0);
+  background: rgb(255, 0, 0);
   bottom: 0;
   left: 0;
   right: 0;
@@ -133,6 +133,13 @@ div.bucket img:hover {
 
 #left, #right, #bottom, #top {
   transition: all 0.5s
+}
+
+
+/* Twitch */
+
+div.player-streaminfo__name, div.player-streaminfo__title.qa-stream-title, div.pl-controls-top {
+  display: none;
 }
 
 @media only screen and (max-width: 900px) {

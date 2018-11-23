@@ -4,7 +4,7 @@
  *
  * Uses PubNub example code
  */
- 
+
 //input variables
 var sendText;
 var whoAreYou;
@@ -22,11 +22,11 @@ const counterTag = document.querySelector(".totalClicks span")
 const buttonTag = document.querySelector("a.paintChange")
 const paintTag = document.querySelector("a.paintBucket")
 const paintColors = [ 	{ background: "rgb(255, 0, 0)"}, // RED
-						{ background: "rgb(255, 255, 0)"}, // YELLOW 
-                      { background: "rgb(0, 0, 255)"} // BLUE
+						            { background: "rgb(255, 255, 0)"}, // YELLOW
+                        { background: "rgb(0, 0, 255)"} // BLUE
                     ]
 
-buttonTag.addEventListener("click", function() {
+buttonTag.addEventListener("mousedown", function() {
 
   buttonTag.innerHTML = `<img src="assets/Paint-clicked.jpg">`
   counter++;
@@ -42,7 +42,7 @@ buttonTag.addEventListener("click", function() {
 paintTag.addEventListener("click", function() {
   random()
 })
- 
+
 // server variables
 var dataServer;
 var pubKey = 'pub-c-1d984e5a-8522-46fb-8b86-de8ac913e1e9';
@@ -58,25 +58,25 @@ function setup() {
 	/*
 	var canv = createCanvas(windowWidth, windowHeight); // Init Canvas
 	canv.position(0,0);
-	fr = 30; // Frames per second 
-	frameRate(fr); 
+	fr = 30; // Frames per second
+	frameRate(fr);
 	getAudioContext().resume(); // Overrides sound setting
 	*/
 	// PubNub
 	dataServer = new PubNub( {
 		publish_key   : pubKey,  //get these from the pubnub account online
-		subscribe_key : subKey,  
+		subscribe_key : subKey,
 		ssl: true  //enables a secure connection. This option has to be used if using the OCAD webspace
 		}
 		);
-	
+
 	//attach callbacks to the pubnub object to handle messages and connections
 	dataServer.addListener({ message: readIncoming, presence: whoisconnected })
 	dataServer.subscribe({channels: [channelName]});
-	
+
 	// Twitch
 	var player = embed.getPlayer();
-    player.play(); // Plays video 
+    player.play(); // Plays video
 }
 
 function draw() {
@@ -85,7 +85,7 @@ function draw() {
 
 ///uses built in mouseClicked function to send the data to the pubnub server
 function sendTheMessage() {
- 
+
 
   // Send Data to the server to draw it in all other canvases
   dataServer.publish(
@@ -94,24 +94,24 @@ function sendTheMessage() {
 	  message: {
 		paintCol: paintNumber
 	  }
-	  
+
     });
-	
+
 console.log("published");
 
 }
 
-function readIncoming(inMessage) //when new data comes in it triggers this function, 
+function readIncoming(inMessage) //when new data comes in it triggers this function,
 {                               // this works becsuse we subscribed to the channel in setup()
-  
+
   // simple error check to match the incoming to the channelName
   if(inMessage.channel == channelName)
   {
 	// STUB: Create instance of "+1" colour particle object here
-	// - need a list of particle objects 
-	// - need a particle constructor function 
+	// - need a list of particle objects
+	// - need a particle constructor function
 	// https://p5js.org/examples/simulate-particle-system.html
-	// particle.color = inMessage.paintCol; 
+	// particle.color = inMessage.paintCol;
   }
 }
 
