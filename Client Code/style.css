@@ -1,6 +1,6 @@
 body, h1 {
   font-family: neuzeit-grotesk, sans-serif;
-  color: #FF7055;
+  color: #FFFFFF;
   font-size: 72px;
   font-weight: 400;
   transition: all 0.2s;
@@ -29,6 +29,7 @@ margin-left: 48px;
 } */
 
 .totalClicks h1 {
+  font-size: 24px;
   position: absolute;
   top: 3%;
   right: 0;
@@ -39,15 +40,15 @@ margin-left: 48px;
   position: absolute;
   bottom: 3%;
   left: 0;
-  margin-left: 48px;
+  margin-left: 72px;
 }
 
-.live h1 {
+/* .live h1 {
   position: absolute;
   bottom: 3%;
   right: 0;
   margin-right: 48px;
-}
+} */
 
 nav {
   position: absolute;
@@ -78,13 +79,18 @@ div.button img {
 
 div.bucket {
   position: absolute;
+  bottom: 8%;
+  right: 0;
+  margin-right: 72px;
+
+  /* position: absolute;
   text-align: center;
   bottom: 20%;
   left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 div.bucket img {
@@ -137,20 +143,18 @@ div.bucket img:hover {
 }
 
 
-/* Twitch */
-
-div.player-streaminfo__name, div.player-streaminfo__title.qa-stream-title, div.pl-controls-top {
-  display: none;
-}
-
 @media only screen and (max-width: 900px) {
 
-  .live h1, .totalPlates h1, .totalClicks h1, .totalUsers h1 {
+  .totalPlates h1, .totalUsers h1 {
     font-size: 48px;
   }
 
+  .totalClicks h1 {
+    font-size: 32px;
+  }
+
   div.bucket {
-    bottom: 13%;
+    bottom: 4%;
   }
 
   div.button {
@@ -166,7 +170,11 @@ div.player-streaminfo__name, div.player-streaminfo__title.qa-stream-title, div.p
   }
 
   div.bucket {
-    bottom: 13%;
+    bottom: 4%;
+  }
+
+  div.totalPlates h1 {
+    bottom: 5.5%;
   }
 
   div.button {
@@ -175,14 +183,26 @@ div.player-streaminfo__name, div.player-streaminfo__title.qa-stream-title, div.p
 
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 415px) {
 
   div.bucket {
-    bottom: 25%;
+    bottom: 2%;
+    right: 0;
+    margin-right: 32px;
+  }
+
+  div.totalPlates h1 {
+    margin-left: 32px;
+    bottom: 2%;
   }
 
   div.button {
     bottom: 13%;
+  }
+
+  div.totalClicks h1 {
+    margin-right: 32px;
+    font-size: 26px;
   }
 }
 

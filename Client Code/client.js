@@ -15,7 +15,7 @@ let counter = 0; // Your total clicks
 let totalCounter = [0,0,0]; // Total clicks recorded for paint colours
 // e.g. totalCounter[0] = red drops
 //			totalCounter[1] = yella darapssss
-// 			totalCounter[2] = blue drops 
+// 			totalCounter[2] = blue drops
 
 
 const h1Tag1 = document.querySelector("h1")
@@ -38,7 +38,7 @@ buttonTag.addEventListener("mousedown", function() {
 
   buttonTag.innerHTML = `<img src="assets/Paint-clicked.jpg">`
   counter++;
-  counterTag.innerHTML = totalCounter + " "
+  counterTag.innerHTML = "<p>" + totalCounter[0] + " Red Drops</p>" + "<p>" + totalCounter[1] + " Yellow Drops</p>" + "<p>" + totalCounter[2] + " Blue Drops</p>"
   console.log(counter);
   sendTheMessage();
 
@@ -142,7 +142,7 @@ const updateSection = function() {
 	divLeftTag.style.background = paintColors[paintNumber].background
 	divBottomTag.style.background = paintColors[paintNumber].background
 	divTopTag.style.background = paintColors[paintNumber].background
-  h1Tag1.style.color = paintColors[paintNumber].background
-  h1Tag2.style.color = paintColors[paintNumber].background
-  h1Tag3.style.color = paintColors[paintNumber].background
+  // h1Tag1.style.color = paintColors[paintNumber].background
+  // h1Tag2.style.color = paintColors[paintNumber].background
+  // h1Tag3.style.color = paintColors[paintNumber].background
 }
