@@ -20,7 +20,7 @@ let totalCounter = [0,0,0]; // Total clicks recorded for paint colours
 
 const h1Tag1 = document.querySelector("h1")
 const h1Tag2 = document.querySelector("div.totalPlates h1")
-const h1Tag3 = document.querySelector("div.live h1")
+// const h1Tag3 = document.querySelector("div.live h1")
 const divLeftTag = document.querySelector("#left")
 const divRightTag = document.querySelector("#right")
 const divTopTag = document.querySelector("#top")
@@ -33,6 +33,51 @@ const paintColors = [ 	{ background: "rgb(255, 0, 0)"}, // RED
 						            { background: "rgb(255, 255, 0)"}, // YELLOW
                         { background: "rgb(0, 0, 255)"} // BLUE
                     ]
+
+
+
+// server variables
+var dataServer;
+var pubKey = 'pub-c-1d984e5a-8522-46fb-8b86-de8ac913e1e9';
+var subKey = 'sub-c-86c0e61c-ea81-11e8-91a4-7e00ddddd7aa';
+var channelName = 'splash';
+
+
+function preload() { // Preload graphical assets
+	// STUB
+}
+
+function setup() {
+	/*
+	// Particle Canvas
+	var canv = createCanvas(windowWidth/4, windowHeight/4); // Init Canvas
+	canv.position(windowWidth/4,0);
+	fr = 30; // Frames per second
+	frameRate(fr);
+	getAudioContext().resume(); // Overrides sound setting
+	system = new ParticleSystem(createVector(width/2, 50));
+	*/
+
+	// Paint type display
+	random();
+	counterTag.innerHTML = "<p>" + totalCounter[0] + " Red Drops</p>" + "<p>" + totalCounter[1] + " Yellow Drops</p>" + "<p>" + totalCounter[2] + " Blue Drops</p>"
+
+	// PubNub
+	dataServer = new PubNub( {
+		publish_key   : pubKey,  //get these from the pubnub account online
+		subscribe_key : subKey,
+		ssl: true  //enables a secure connection. This option has to be used if using the OCAD webspace
+		}
+		);
+
+	//attach callbacks to the pubnub object to handle messages and connections
+	dataServer.addListener({ message: readIncoming, presence: whoisconnected })
+	dataServer.subscribe({channels: [channelName]});
+
+	// Twitch
+	var player = embed.getPlayer();
+    player.play(); // Plays video
+}
 
 buttonTag.addEventListener("mousedown", function() {
 
@@ -50,49 +95,6 @@ buttonTag.addEventListener("mousedown", function() {
 paintTag.addEventListener("click", function() {
   nextPaint();
 })
-
-// server variables
-var dataServer;
-var pubKey = 'pub-c-1d984e5a-8522-46fb-8b86-de8ac913e1e9';
-var subKey = 'sub-c-86c0e61c-ea81-11e8-91a4-7e00ddddd7aa';
-var channelName = 'splash';
-
-
-function preload() { // Preload graphical assets
-	// STUB
-}
-
-function setup() {
-	/*
-	// Particle Canvas 
-	var canv = createCanvas(windowWidth/4, windowHeight/4); // Init Canvas
-	canv.position(windowWidth/4,0);
-	fr = 30; // Frames per second
-	frameRate(fr);
-	getAudioContext().resume(); // Overrides sound setting
-	system = new ParticleSystem(createVector(width/2, 50)); 
-	*/
-	
-	// Paint type display
-	random();
-	counterTag.innerHTML = "<p>" + totalCounter[0] + " Red Drops</p>" + "<p>" + totalCounter[1] + " Yellow Drops</p>" + "<p>" + totalCounter[2] + " Blue Drops</p>"
-	
-	// PubNub
-	dataServer = new PubNub( {
-		publish_key   : pubKey,  //get these from the pubnub account online
-		subscribe_key : subKey,
-		ssl: true  //enables a secure connection. This option has to be used if using the OCAD webspace
-		}
-		);
-
-	//attach callbacks to the pubnub object to handle messages and connections
-	dataServer.addListener({ message: readIncoming, presence: whoisconnected })
-	dataServer.subscribe({channels: [channelName]});
-
-	// Twitch
-	var player = embed.getPlayer();
-    player.play(); // Plays video
-}
 
 function draw() {
 	// Draw Particles Here
@@ -219,7 +221,7 @@ const updateSection = function() {
 	divLeftTag.style.background = paintColors[paintNumber].background
 	divBottomTag.style.background = paintColors[paintNumber].background
 	divTopTag.style.background = paintColors[paintNumber].background
-  // h1Tag1.style.color = paintColors[paintNumber].background
-  // h1Tag2.style.color = paintColors[paintNumber].background
+  h1Tag1.style.color = paintColors[paintNumber].background
+  h1Tag2.style.color = paintColors[paintNumber].background
   // h1Tag3.style.color = paintColors[paintNumber].background
 }
