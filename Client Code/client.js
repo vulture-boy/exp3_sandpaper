@@ -35,7 +35,7 @@ buttonTag.addEventListener("mousedown", function() {
 
   buttonTag.innerHTML = `<img src="assets/Paint-clicked.jpg">`
   counter++;
-  counterTag.innerHTML = counter + " "
+  counterTag.innerHTML = totalCounter + " "
   console.log(counter);
   sendTheMessage();
 
