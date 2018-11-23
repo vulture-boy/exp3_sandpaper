@@ -32,6 +32,7 @@ divTopTag.style.background = paintColors[paintNumber].background
 buttonTag.addEventListener("click", function() {
 
   buttonTag.innerHTML = `<img src="Paint-clicked.jpg">`
+  
   counter ++;
   counterTag.innerHTML = counter + " "
   console.log(counter);

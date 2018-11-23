@@ -100,7 +100,7 @@ div.bucket img:hover {
 #left  {
   width: 14px;
   left: 0px;
-  background: rgb(255, 255, 0);
+  background: rgb(255, 0, 0);
   top: 0;
   bottom: 0;
   position: fixed;
@@ -109,7 +109,7 @@ div.bucket img:hover {
 #right {
   width: 14px;
   right: 0px;
-  background: rgb(255, 255, 0);
+  background: rgb(255, 0, 0);
   top: 0;
   bottom: 0;
   position: fixed;
@@ -119,7 +119,7 @@ div.bucket img:hover {
   position: absolute;
   height: 14px;
   top: 0;
-  background: rgb(255, 255, 0);
+  background: rgb(255, 0, 0);
   left: 0;
   right: 0;
 }
@@ -127,7 +127,7 @@ div.bucket img:hover {
 #bottom {
   position: absolute;
   height: 14px;
-  background: rgb(255, 255, 0);
+  background: rgb(255, 0, 0);
   bottom: 0;
   left: 0;
   right: 0;
