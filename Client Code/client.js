@@ -48,7 +48,7 @@ buttonTag.addEventListener("mousedown", function() {
 })
 
 paintTag.addEventListener("click", function() {
-  random()
+  nextPaint();
 })
 
 // server variables
@@ -64,12 +64,19 @@ function preload() { // Preload graphical assets
 
 function setup() {
 	/*
-	var canv = createCanvas(windowWidth, windowHeight); // Init Canvas
-	canv.position(0,0);
+	// Particle Canvas 
+	var canv = createCanvas(windowWidth/4, windowHeight/4); // Init Canvas
+	canv.position(windowWidth/4,0);
 	fr = 30; // Frames per second
 	frameRate(fr);
 	getAudioContext().resume(); // Overrides sound setting
+	system = new ParticleSystem(createVector(width/2, 50)); 
 	*/
+	
+	// Paint type display
+	random();
+	counterTag.innerHTML = "<p>" + totalCounter[0] + " Red Drops</p>" + "<p>" + totalCounter[1] + " Yellow Drops</p>" + "<p>" + totalCounter[2] + " Blue Drops</p>"
+	
 	// PubNub
 	dataServer = new PubNub( {
 		publish_key   : pubKey,  //get these from the pubnub account online
@@ -88,12 +95,70 @@ function setup() {
 }
 
 function draw() {
-	// STUB: Draw Particles Here
+	// Draw Particles Here
+	/*
+		background(51);
+		system.addParticle();
+		system.run();
+	*/
 }
 
-///uses built in mouseClicked function to send the data to the pubnub server
-function sendTheMessage() {
+/*
+// A simple Particle class
+var Particle = function(position) {
+  this.acceleration = createVector(0, 0.05);
+  this.velocity = createVector(random(-1, 1), random(-1, 0));
+  this.position = position.copy();
+  this.lifespan = 255;
+};
 
+Particle.prototype.run = function() {
+  this.update();
+  this.display();
+};
+
+// Method to update position
+Particle.prototype.update = function(){
+  this.velocity.add(this.acceleration);
+  this.position.add(this.velocity);
+  this.lifespan -= 2;
+};
+
+// Method to display
+Particle.prototype.display = function() {
+  stroke(200, this.lifespan);
+  strokeWeight(2);
+  fill(127, this.lifespan);
+  ellipse(this.position.x, this.position.y, 12, 12);
+};
+
+// Is the particle still useful?
+Particle.prototype.isDead = function(){
+  return this.lifespan < 0;
+};
+
+var ParticleSystem = function(position) {
+  this.origin = position.copy();
+  this.particles = [];
+};
+
+ParticleSystem.prototype.addParticle = function() {
+  this.particles.push(new Particle(this.origin));
+};
+
+ParticleSystem.prototype.run = function() {
+  for (var i = this.particles.length-1; i >= 0; i--) {
+    var p = this.particles[i];
+    p.run();
+    if (p.isDead()) {
+      this.particles.splice(i, 1);
+    }
+  }
+};
+*/
+
+// uses built in mouseClicked function to send the data to the pubnub server
+function sendTheMessage() {
 
   // Send Data to the server to draw it in all other canvases
   dataServer.publish(
@@ -116,6 +181,8 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
   if(inMessage.channel == channelName)
   {
 	  totalCounter[inMessage.message.paintCol]++;
+	  counterTag.innerHTML = "<p>" + totalCounter[0] + " Red Drops</p>" + "<p>" + totalCounter[1] + " Yellow Drops</p>" + "<p>" + totalCounter[2] + " Blue Drops</p>"
+
 	// STUB: Create instance of "+1" colour particle object here
 	// - need a list of particle objects
 	// - need a particle constructor function
@@ -133,9 +200,19 @@ function whoisconnected(connectionInfo) {
 }
 
 const random = function() {
-  paintNumber = Math.floor(Math.random() * paintColors.length)
-  updateSection()
+  paintNumber = Math.floor(Math.random() * paintColors.length);
+
+  updateSection();
 }
+
+const nextPaint = function() {
+	paintNumber++;
+  if (paintNumber > 2) {
+	  paintNumber = 0;
+  }
+  updateSection();
+}
+
 
 const updateSection = function() {
 	divRightTag.style.background = paintColors[paintNumber].background
