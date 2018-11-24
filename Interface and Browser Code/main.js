@@ -12,7 +12,7 @@ const divBottomTag = document.querySelector("#bottom")
 const counterTag = document.querySelector(".totalClicks span")
 const buttonTag = document.querySelector("a.paintChange")
 const paintTag = document.querySelector("a.paintBucket")
-const paintColors = [ { background: "rgb(255, 255, 0)"},
+const paintColors = [ { background: "rgb(78, 166, 169)"},
                       { background: "rgb(255, 0, 0)"},
                       { background: "rgb(0, 0, 255)"}
                     ]
@@ -32,7 +32,7 @@ divTopTag.style.background = paintColors[paintNumber].background
 buttonTag.addEventListener("click", function() {
 
   buttonTag.innerHTML = `<img src="Paint-clicked.jpg">`
-  
+
   counter ++;
   counterTag.innerHTML = counter + " "
   console.log(counter);

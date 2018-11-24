@@ -9,6 +9,7 @@ body, h1 {
   font-size: 72px;
   font-weight: 400;
   transition: all 0.2s;
+  touch-action: manipulation;
 }
 
 html, body {
