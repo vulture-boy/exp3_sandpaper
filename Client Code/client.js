@@ -17,9 +17,9 @@ let totalCounter = [0,0,0]; // Total clicks recorded for paint colours
 //			totalCounter[1] = yella darapssss
 // 			totalCounter[2] = blue drops
 
-
-const h1Tag1 = document.querySelector("h1")
-const h1Tag2 = document.querySelector("div.totalPlates h1")
+//
+// const h1Tag1 = document.querySelector("h1")
+// const h1Tag2 = document.querySelector("div.totalPlates h1")
 // const h1Tag3 = document.querySelector("div.live h1")
 const divLeftTag = document.querySelector("#left")
 const divRightTag = document.querySelector("#right")
@@ -30,7 +30,7 @@ const counterTag = document.querySelector(".totalClicks span")
 const buttonTag = document.querySelector("a.paintChange")
 const paintTag = document.querySelector("a.paintBucket")
 const paintColors = [ 	{ background: "rgb(255, 0, 0)"}, // RED
-						            { background: "rgb(255, 255, 0)"}, // YELLOW
+						            { background: "rgb(255, 220, 0)"}, // YELLOW
                         { background: "rgb(0, 0, 255)"} // BLUE
                     ]
 
@@ -221,7 +221,7 @@ const updateSection = function() {
 	divLeftTag.style.background = paintColors[paintNumber].background
 	divBottomTag.style.background = paintColors[paintNumber].background
 	divTopTag.style.background = paintColors[paintNumber].background
-  h1Tag1.style.color = paintColors[paintNumber].background
-  h1Tag2.style.color = paintColors[paintNumber].background
+  // h1Tag1.style.color = paintColors[paintNumber].background
+  // h1Tag2.style.color = paintColors[paintNumber].background
   // h1Tag3.style.color = paintColors[paintNumber].background
 }

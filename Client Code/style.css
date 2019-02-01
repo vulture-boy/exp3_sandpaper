@@ -109,7 +109,7 @@ div.bucket img:hover {
 }
 
 #left  {
-  width: 14px;
+  width: 100%;
   left: 0px;
   background: rgb(255, 0, 0);
   top: 0;
