@@ -6,6 +6,9 @@
  * 
  */
 
+// PUBLIC; CHECK THAT THESE ARE GOOD
+var serialPortName = "COM12";      //FOR PC it will be COMX on mac it will be something like "/dev/cu.usbmodemXXXX"
+ 
 // server variables
 var dataServer;
 var pubKey = 'pub-c-1d984e5a-8522-46fb-8b86-de8ac913e1e9';
@@ -17,9 +20,9 @@ var serial;       //variable to hold the serial port object
 var ardSend = {}; //uses {} to define it as a JSON variable
 var solenoids = 3; // no. of solenoids
 var sendVal = [0,0,0]; // Values to send to arduino (size = solenoids)
-var serialPortName = "COM12";      //FOR PC it will be COMX on mac it will be something like "/dev/cu.usbmodemXXXX"
 
-var colTime = 5; // Delay Time 
+var colTime = 3; // Delay Time 
+var colDelayOffset = 1; // Minimum time to paint.
 var colDelay = [0,0,0]; // Respective time 'til col should be closed 
 
 var sendRate = 50;
@@ -73,6 +76,9 @@ function draw() {
 			sendVal[i] = 0;
 		} else {
 			colDelay[i]--;
+			if (colDelay[i] < 0) { // Protect math
+				colDelay[i] = 0;
+			}
 			sendVal[i] = 1;
 		}
 	}
@@ -88,12 +94,13 @@ function draw() {
 }
 
 function readIncoming(inMessage) { //when new data comes in it triggers this function, 
-  // this works becsuse we subscribed to the channel in setup()
+  // this works because we subscribed to the channel in setup()
   
 	  // simple error check to match the incoming to the channelName
   if(inMessage.channel == channelName) {
-	colDelay[inMessage.message.paintCol] = colTime;
-	sendVal[inMessage.message.paintCol] = 1;
+	  var selCol = inMessage.message.paintCol;
+	colDelay[selCol] = abs(colTime - colDelay[selCol] + colDelayOffset); // Reduces flow affect if taps are coming in fast
+	sendVal[selCol] = 1;
   }
 }
 
