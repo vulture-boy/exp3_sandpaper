@@ -44,7 +44,7 @@ margin-left: 48px;
 
 .totalPlates h1 {
   position: absolute;
-  bottom: 3%;
+  top: 3%;
   left: 0;
   margin-left: 72px;
 }
@@ -180,7 +180,7 @@ div.bucket img:hover {
   }
 
   div.totalPlates h1 {
-    bottom: 5.5%;
+    top: 5.5%;
   }
 
   div.button {
@@ -199,7 +199,7 @@ div.bucket img:hover {
 
   div.totalPlates h1 {
     margin-left: 32px;
-    bottom: 2%;
+    top: 2%;
   }
 
   div.button {
